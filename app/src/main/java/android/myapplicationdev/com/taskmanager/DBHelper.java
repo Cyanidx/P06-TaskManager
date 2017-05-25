@@ -1,8 +1,6 @@
 package android.myapplicationdev.com.taskmanager;
 
-/**
- * Created by 15017569 on 5/25/2017.
- */
+
 
 
 import android.content.ContentValues;

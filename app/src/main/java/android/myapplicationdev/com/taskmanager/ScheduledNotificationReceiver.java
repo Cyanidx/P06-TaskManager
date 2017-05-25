@@ -1,8 +1,6 @@
 package android.myapplicationdev.com.taskmanager;
 
-/**
- * Created by 15017569 on 5/25/2017.
- */
+
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -23,8 +21,8 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Notification.Builder builder = new Notification.Builder(context);
-        builder.setContentTitle(i.getStringExtra("name"));
-        builder.setContentText(i.getStringExtra("desc"));
+        builder.setContentTitle(intent.getStringExtra("name"));
+        builder.setContentText(intent.getStringExtra("desc"));
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);

@@ -2,9 +2,6 @@ package android.myapplicationdev.com.taskmanager;
 
 import java.io.Serializable;
 
-/**
- * Created by 15017569 on 5/25/2017.
- */
 public class Task implements Serializable {
     private int id;
     private String taskName;

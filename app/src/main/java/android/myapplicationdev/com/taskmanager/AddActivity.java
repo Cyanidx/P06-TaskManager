@@ -1,8 +1,6 @@
 package android.myapplicationdev.com.taskmanager;
 
-/**
- * Created by 15017569 on 5/25/2017.
- */
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -17,7 +15,7 @@ import java.util.Calendar;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText etName, etDesc;
+    EditText etName, etDesc, etTime;
     Button btnAdd, btnCancel;
     int reqCode = 123;
     Task content;
@@ -29,6 +27,7 @@ public class AddActivity extends AppCompatActivity {
 
         etName = (EditText) findViewById(R.id.etName);
         etDesc = (EditText) findViewById(R.id.etDesc);
+        etTime = (EditText)findViewById(R.id.etTime);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnCancel = (Button) findViewById(R.id.btnCancel);
@@ -39,11 +38,12 @@ public class AddActivity extends AppCompatActivity {
                 DBHelper dbh = new DBHelper(AddActivity.this);
                 String name = etName.getText().toString();
                 String desc = etDesc.getText().toString();
+                int time = Integer.parseInt(etTime.getText().toString());
                 content = new Task(0, name, desc);
                 dbh.insertTask(content);
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.SECOND, 5);
+                cal.add(Calendar.SECOND, time);
 
                 Intent intent = new Intent(AddActivity.this, ScheduledNotificationReceiver.class);
                 intent.putExtra("name", name);
@@ -55,6 +55,7 @@ public class AddActivity extends AppCompatActivity {
                 am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
 
                 Intent i  = new Intent();
+
                 setResult(RESULT_OK, i);
                 finish();
 
